@@ -68,3 +68,33 @@ setInterval (() =>{
    nextSlide()
 },5000)
 
+
+
+// element show on scroll
+
+//let scroll = window.requestAnimationFrame || function(callback) {window.setTimeout(callback,1000/60)} 
+
+let el_to_show = document.querySelectorAll('.show-on-scroll')
+
+
+isElInview = (el) => {
+   let rect = el.getBoundingClientRect()
+
+   let distance = 200
+
+   return rect.top <= (window.innerHeight - distance || document.documentElement.clientHeight - distance)
+}
+
+loop = () =>{
+   el_to_show.forEach(el => {
+
+      if(isElInview(el)) {
+         el.classList.add('show')
+      }
+
+   })
+}
+
+
+
+window.addEventListener('scroll',loop)
